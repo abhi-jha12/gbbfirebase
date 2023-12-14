@@ -7,7 +7,7 @@ const Header = ({ onSignInClick }) => {
     <header className="bg-white py-1">
       <nav className="container mx-auto flex items-center justify-between">
         {/* Replace with your actual logo image */}
-        <img src= '/assets/logo.png' alt="Logo" className="h-20" />
+        <img src= './assets/logo.png' alt="Logo" className="h-20" />
 
         <ul className="flex bg-black rounded-lg">
           <li className="text-white text-sm mx-10 my-1 hover:text-gray-400 cursor-pointer font-normal leading-normal font-overpass">HOME</li>
