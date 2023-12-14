@@ -7,8 +7,8 @@ const Header2 = ({ onSignInClick }) => {
     <header className="bg-white py-4">
       <nav className="container flex items-center justify-between">
         <div className='flex'>
-        <img src="./src/assets/logo.png" alt="Logo" className="h-20" />
-        <img src="./src/assets/textname.png" alt="Logo" className="h-20" />
+        <img src="/assets/logo.png" alt="Logo" className="h-20" />
+        <img src="/assets/textname.png" alt="Logo" className="h-20" />
         </div>
         <div>
           <LanguageDropdown></LanguageDropdown>

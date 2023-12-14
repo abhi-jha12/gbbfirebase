@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="bg-black text-white py-6">
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="border-t border-gray-700 pt-4 flex flex-col items-center">
-          <img src="./src/assets/logofoot.png" alt="Logo" className="h-20 mb-4" />
+          <img src="/assets/logofoot.png" alt="Logo" className="h-20 mb-4" />
           
           <div className="flex justify-center w-full my-4 space-x-10">
             <a href="mailto:admin@greenbluebrown.in" className="hover:text-gray-300">admin@greenbluebrown.in</a>
