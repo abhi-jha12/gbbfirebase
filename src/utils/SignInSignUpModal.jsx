@@ -29,18 +29,16 @@ const SignInSignUpModal = ({ onClose }) => {
 
     try {
       if (isSignUp) {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        // Add additional user information to your database if needed
-        // For example, save firstName, lastName, country, phoneNumber to Firestore
+        const userCredential = await createUserWithEmailAndPassword(auth, firstName,email, password);
       } else {
-        await signInWithEmailAndPassword(auth, email, password);
+        await signInWithEmailAndPassword(auth, email,  password);
       }
       setShowSuccessOverlay(true); // Show success overlay
       setErrorMessage(''); // Clear any previous error messages
       setTimeout(() => {
         setShowSuccessOverlay(false); // Optionally hide the overlay after some time
         onClose(); // Close the modal
-      }, 8000); // Close the modal on successful sign in/sign up
+        }, 10000);
     } catch (error) {
       // Handle errors here, such as displaying a notification
       console.error("Authentication error:", error.message);
