@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { auth } from '../firebaseConfig'; // Adjust if necessary
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import SuccessModal from './SuccessModal'; 
 import ImageCard2 from './ImageCard2'; // Adjust the path to your ImageCard component
 
 const SignInSignUpModal = ({ onClose }) => {
@@ -14,6 +15,9 @@ const SignInSignUpModal = ({ onClose }) => {
     country: '',
     phoneNumber: ''
   });
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -31,7 +35,12 @@ const SignInSignUpModal = ({ onClose }) => {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
-      onClose(); // Close the modal on successful sign in/sign up
+      setShowSuccessOverlay(true); // Show success overlay
+      setErrorMessage(''); // Clear any previous error messages
+      setTimeout(() => {
+        setShowSuccessOverlay(false); // Optionally hide the overlay after some time
+        onClose(); // Close the modal
+      }, 8000); // Close the modal on successful sign in/sign up
     } catch (error) {
       // Handle errors here, such as displaying a notification
       console.error("Authentication error:", error.message);
@@ -44,6 +53,13 @@ const SignInSignUpModal = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center z-50 px-4">
+       {showSuccessOverlay && (
+      <SuccessModal username={formData.firstName || 'User'} onClose={() => {
+        setShowSuccessOverlay(false);
+        onClose(); // Close the modal
+      }} />
+    )}
+
       <div className="flex bg-white rounded-xl border-2 border-black justify-center items-center">
         <div style={{ marginLeft: '20px', marginTop: '70px' }}>
           <ImageCard2 />
@@ -53,6 +69,12 @@ const SignInSignUpModal = ({ onClose }) => {
           <button onClick={onClose} className="absolute top-0 right-0 m-4 text-black text-2xl">
             <FaTimes />
           </button>
+          {errorMessage && (
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
+              <strong className="font-bold">Error! </strong>
+              <span className="block sm:inline">{errorMessage}</span>
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="space-y-6">
             {isSignUp ? (
               // Sign-up form structure
