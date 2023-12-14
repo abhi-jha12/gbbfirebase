@@ -1,7 +1,7 @@
 // SignInSignUpModal.jsx
 import React, { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
-import ImageCard from './ImageCard'; // Adjust the path to your ImageCard component
+import ImageCard2 from './ImageCard2'; // Adjust the path to your ImageCard component
 
 const SignInSignUpModal = ({ onClose }) => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -14,7 +14,7 @@ const SignInSignUpModal = ({ onClose }) => {
     <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center z-50 px-4">
       <div className="flex bg-white rounded-xl border-2 border-black justify-center items-center">
         <div style={{ marginLeft: '20px', marginTop: '70px' }}>
-          <ImageCard />
+          <ImageCard2 />
         </div>
 
         <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md relative ml-10">
